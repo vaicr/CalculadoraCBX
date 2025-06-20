@@ -22,11 +22,13 @@ class DefinirValorFixo(commands.Cog):
         unidade_robux: str = SlashOption(description = "Valor fixo da unidade de robux", required = True)
     ):
         
+        await interaction.response.defer(ephemeral = True)
+
         valor = float(unidade_robux.replace(",", "."))
         self.bot.unidade_robux = valor
         unidade_robux = f"{valor:.3f}".replace(".", ",")
         
-        await interaction.response.send_message(
+        await interaction.followup.send(
             f"Agora, o valor fixo da unidade de robux é **R${unidade_robux}**."
         )
 
@@ -37,11 +39,13 @@ class DefinirValorFixo(commands.Cog):
         unidade_gift: str = SlashOption(description = "Valor fixo da unidade de gift", required = True)
     ):
         
+        await interaction.response.defer(ephemeral = True)
+
         valor = float(unidade_gift.replace(",", "."))
         self.bot.unidade_gift = valor
         unidade_gift = f"{valor:.3f}".replace(".", ",")
 
-        await interaction.response.send_message(
+        await interaction.followup.send(
             f"Agora, o valor fixo da unidade de gift é **R${unidade_gift}**."
         )
 

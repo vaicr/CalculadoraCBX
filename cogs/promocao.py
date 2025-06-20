@@ -24,22 +24,24 @@ class DefinirPromocao(commands.Cog):
         porcentagem: str = SlashOption(description = "Porcentagem de desconto (Ex: 20 para 20%)", required = True)
     ):
         
+        await interaction.response.defer(ephemeral = True)
+
         unidade_robux = getattr(self.bot, "unidade_robux", None)
 
         try:
             porcentagem = float(porcentagem.replace(",", "."))
         except ValueError:
-            await interaction.response.send_message("<:a_warning:1371906000239722580> Porcentagem inválida.")
+            await interaction.followup.send("<:a_warning:1371906000239722580> Porcentagem inválida.")
             return
 
         percentual = f"{porcentagem}".replace(".", ",")
 
         if porcentagem < 0 or porcentagem > 100:
-            await interaction.response.send_message("<:a_warning:1371906000239722580> A porcentagem deve estar entre 0 e 100.")
+            await interaction.followup.send("<:a_warning:1371906000239722580> A porcentagem deve estar entre 0 e 100.")
             return
         
         elif unidade_robux is None:
-            await interaction.response.send_message("<:a_warning:1371906000239722580> O valor da unidade de robux ainda não foi definido. Use o comando **/valorfixo robux** primeiro.")
+            await interaction.followup.send("<:a_warning:1371906000239722580> O valor da unidade de robux ainda não foi definido. Use o comando **/valorfixo robux** primeiro.")
             return
         
         unidade_robux = float(unidade_robux)
@@ -51,14 +53,14 @@ class DefinirPromocao(commands.Cog):
         self.bot.unidadefinal_robux = valorpromocional
 
         if porcentagem == 0:
-            await interaction.response.send_message(
+            await interaction.followup.send(
                 f"- Nenhuma promoção aplicada! \n"
                 f"> Valor da unidade de robux: **R${unidadefinal_robux}** \n"
                 f"> **1000 robux = R${milrobux}**"
             )
         
         else:
-            await interaction.response.send_message(
+            await interaction.followup.send(
                 f"- Promoção de **{percentual}%** aplicada! \n"
                 f"> Agora, o valor da unidade de robux é **R${unidadefinal_robux}**. \n"
                 f"> **1000 robux = R${milrobux}**"
@@ -72,22 +74,24 @@ class DefinirPromocao(commands.Cog):
         porcentagem: str = SlashOption(description = "Porcentagem de desconto (Ex: 20 para 20%)", required = True)
     ):
         
+        await interaction.response.defer(ephemeral = True)
+
         unidade_gift = getattr(self.bot, "unidade_gift", None)
 
         try:
             porcentagem = float(porcentagem.replace(",", "."))
         except ValueError:
-            await interaction.response.send_message("<:a_warning:1371906000239722580> Porcentagem inválida.")
+            await interaction.followup.send("<:a_warning:1371906000239722580> Porcentagem inválida.")
             return
 
         percentual = f"{porcentagem}".replace(".", ",")
 
         if porcentagem < 0 or porcentagem > 100:
-            await interaction.response.send_message("<:a_warning:1371906000239722580> A porcentagem deve estar entre 0 e 100.")
+            await interaction.followup.send("<:a_warning:1371906000239722580> A porcentagem deve estar entre 0 e 100.")
             return
         
         elif unidade_gift is None:
-            await interaction.response.send_message("<:a_warning:1371906000239722580> O valor da unidade de gift ainda não foi definido. Use o comando **/valorfixo gift** primeiro.")
+            await interaction.followup.send("<:a_warning:1371906000239722580> O valor da unidade de gift ainda não foi definido. Use o comando **/valorfixo gift** primeiro.")
             return
         
         unidade_gift = float(unidade_gift)
@@ -99,14 +103,14 @@ class DefinirPromocao(commands.Cog):
         self.bot.unidadefinal_gift = valorpromocional
 
         if porcentagem == 0:
-            await interaction.response.send_message(
+            await interaction.followup.send(
                 f"- Nenhuma promoção aplicada! \n"
                 f"> Valor da unidade de gift: **R${unidadefinal_gift}** \n"
                 f"> **Gift de 1000 robux = R${milrobux}**"
             )
         
         else:
-            await interaction.response.send_message(
+            await interaction.followup.send(
                 f"- Promoção de **{percentual}%** aplicada! \n"
                 f"> Agora, o valor da unidade de gift é **R${unidadefinal_gift}**. \n"
                 f"> **Gift de 1000 robux = R${milrobux}**"
