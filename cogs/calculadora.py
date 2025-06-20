@@ -11,8 +11,9 @@ from cogs.modais.giftreais import GiftParaReais
 class CalcSelect(Select):
     def __init__(self, bot):
         options = (
-            SelectOption(label = "Robux", value = "robux", emoji = "<:e_robux:1378175850113007727>"),
-            SelectOption(label = "Gift", value = "gift", emoji = "<:e_cbxstar:1378175878327959675>")
+            SelectOption(label = "Robux para Reais", value = "robux"),
+            SelectOption(label = "Reais para Robux", value = "reais"),
+            SelectOption(label = "Gift para Reais", value = "gift")
         )
         super().__init__(
             placeholder = "Selecione o que você deseja calcular.", 
@@ -23,67 +24,15 @@ class CalcSelect(Select):
     
     async def callback(self, interaction: Interaction):
         categoria = self.values[0]
-        await interaction.response.defer(ephemeral = True)
 
         if categoria == "robux":
-            embed = Embed(
-                description = (
-                    "# <:e_cbxarrow:1378148186249494669> Calculadora de Robux \n"
-                    "> Para calcular, selecione uma das opções abaixo: \n"
-                    "\n"
-                    "<:e_robux:1378175850113007727> **Robux para reais:** \n"
-                    "> Calcula a quantidade de robux desejada em reais. \n"
-                    "\n"
-                    "<:e_robux:1378175850113007727> **Reais para robux:** \n"
-                    "> Calcula a quantia de reais desejada em robux."
-                    ),
-                    color = 0x54AB4B
-                )
-            
-            view = View(timeout = None)
-
-            botao1 = Button(label = "Robux para Reais", style = ButtonStyle.green)
-            botao2 = Button(label = "Reais para Robux", style = ButtonStyle.green)
-
-            async def callback1(interaction: Interaction):
-                await interaction.response.defer(ephemeral = True)
-                await interaction.response.send_modal(RobuxParaReais(self.bot))
-
-            async def callback2(interaction: Interaction):
-                await interaction.response.defer(ephemeral = True)
-                await interaction.response.send_modal(ReaisParaRobux(self.bot))
-
-            botao1.callback = callback1
-            botao2.callback = callback2
-
-            view.add_item(botao1)
-            view.add_item(botao2)
+           await interaction.response.send_modal(RobuxParaReais(self.bot))
+        
+        elif categoria == "reais":
+            await interaction.response.send_modal(ReaisParaRobux(self.bot))
 
         else:
-            embed = Embed(
-                description = ("# <:e_cbxarrow:1378148186249494669> Calculadora de Gift \n"
-                    "> Para calcular, selecione a opção abaixo: \n"
-                    "\n"
-                    "<:e_cbxstar:1378175878327959675> **Gift para reais:** \n" 
-                    "> Calcula o valor do gift desejado em reais."
-                    ),
-                    color = 0x54AB4B
-                )
-            
-            view = View(timeout = None)
-
-            botao3 = Button(label = "Gift para Reais", style = ButtonStyle.green)
-
-            async def callback3(interaction: Interaction):
-                await interaction.response.defer(ephemeral = True)
-                await interaction.response.send_modal(GiftParaReais(self.bot))
-
-            botao3.callback = callback3
-
-            view.add_item(botao3)
-
-
-        await interaction.followup.send(embed = embed, view = view, ephemeral = True)
+            await interaction.response.send_modal(GiftParaReais(self.bot))
 
 # view do select
 
