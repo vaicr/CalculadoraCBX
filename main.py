@@ -21,4 +21,4 @@ async def on_ready():
     print("Todos os comandos foram sincronizados.")
     print(f"{bot.user.name} foi iniciado.")
 
-bot.run(getenv('DISCORD_TOKEN'))
+bot.run(getenv('MTM2OTU4ODY0OTgzNzk4NTg0NQ.GXupsP.tdsKklGmPnNEsNKqiHMD1Yjem7oA32_EJ8mDMQ'))
