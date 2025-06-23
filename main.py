@@ -1,7 +1,7 @@
 import nextcord
 from nextcord.ext import commands
-from apikeys import BOTTOKEN
 import os
+from os import getenv
 
 intents = nextcord.Intents.all()
 intents.message_content = True
@@ -21,4 +21,4 @@ async def on_ready():
     print("Todos os comandos foram sincronizados.")
     print(f"{bot.user.name} foi iniciado.")
 
-bot.run(BOTTOKEN)
+bot.run(getenv('MTM2OTU4ODY0OTgzNzk4NTg0NQ.GXupsP.tdsKklGmPnNEsNKqiHMD1Yjem7oA32_EJ8mDMQ'))
