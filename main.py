@@ -1,7 +1,9 @@
 import nextcord
 from nextcord.ext import commands
 import os
-from apikeys import BOTTOKEN
+from dotenv import load_dotenv
+load_dotenv()
+BOTTOKEN = os.getenv("BOTTOKEN")
 
 intents = nextcord.Intents.all()
 intents.message_content = True
