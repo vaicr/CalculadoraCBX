@@ -112,7 +112,7 @@ class ReaisParaRobux(Modal):
 
                 await interaction.response.send_message(
                     f"- A quantia de **R${reais}** dará **{int(robux)} robux**. \n"
-                    "> O valor máximo por carrinho é 5000 robux. Para prosseguir com sua compra, consulte o suporte em https://discord.com/channels/1187947032183308389/1335372991646924823.",
+                    "> O valor máximo por carrinho é 5000 robux. Para prosseguir com sua compra, consulte o suporte em https://discord.com/channels/1187947032183308389/1385692023268315166.",
                     ephemeral = True
                 )
 
